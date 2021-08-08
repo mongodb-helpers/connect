@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import { Db, MongoClient } from 'mongodb'
 import { connect, withMongoose } from '../src'
 
-const MONGODB_URL = 'mongodb+srv://admin:admin@cluster0.ndtam.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const MONGODB_URL = 'mongodb+srv://test:test@cluster0.6os9x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 describe('connect module', () => {
   it('should export connect as function with 1 param', () => {
