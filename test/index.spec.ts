@@ -1,5 +1,4 @@
 import { assert, expect } from 'chai'
-import mongoose from 'mongoose'
 import { Db, MongoClient } from 'mongodb'
 import { connect, withMongoose } from '../src'
 
@@ -23,7 +22,8 @@ describe('connect module', () => {
     expect(socket).that.has.property('client')
     assert(socket.client instanceof MongoClient)
     expect(socket).that.has.property('onClose')
-    assert(typeof socket.onClose === 'function') 
+    assert(typeof socket.onClose === 'function')
+    socket.onClose()
   })
 
   it('should throw to mongodb when pass invalid url', () => { 
