@@ -23,7 +23,7 @@
 
 <!-- ***************** -->
 
-### Expressive elegant modern amiable glamorous Macchiato.js Router ⚡ <small> (support also raw Node.js and Koa.js) </small>.
+### Don't repeat yourself when you want to connect to mongodb 🧚🏻‍♂️.
 
 ## `Installation`
 
