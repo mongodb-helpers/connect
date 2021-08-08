@@ -44,9 +44,9 @@ This is a practical example of how to use.
 import { connect, withMongoose } from "@mongodb-helpers/connect";
 
 const connection = await connect({ url: process.env.MONGODB_URL });
-// socket.db : database instance
-// socket.client: mongodb client instance
-// socket.onClose: helper function to close connection
+// connection.db : database instance
+// connection.client: mongodb client instance
+// connection.onClose: helper function to close connection
 
 // withMongoose take mongodb client instance as param
 withMongoose(connection.client);
