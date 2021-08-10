@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+### v0.2.0 (8 Aug 2021)
+
+- add the same connect function with `mongoose`
+
 ### v0.1.2 (8 Aug 2021)
 
 - fix MONGODB_URL in tests
