@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+### v0.2.1 (10 Aug 2021)
+
+- fix connect result type
+
 ### v0.2.0 (10 Aug 2021)
 
 - add the same connect function with `mongoose`
