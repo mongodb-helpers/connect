@@ -1,6 +1,6 @@
 # CHANGE LOG
 
-### v0.2.0 (8 Aug 2021)
+### v0.2.0 (10 Aug 2021)
 
 - add the same connect function with `mongoose`
 
