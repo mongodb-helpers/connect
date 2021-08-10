@@ -2,6 +2,7 @@
 
 import mongoose from 'mongoose'
 import type { ConnectOptions } from 'mongoose'
+import { Db, MongoClient } from 'mongodb'
 
 interface ConnectionOptions extends ConnectOptions {
   forceClose?: boolean,
@@ -13,8 +14,14 @@ const defaultOptions = {
   useUnifiedTopology: true
 }
 
-// TODO: should fix the generic type in the result promise
-export async function connect(options: ConnectionOptions): Promise<any> {
+type Result = {
+  db: Db,
+  client: typeof mongoose,
+  mongodbClient: typeof MongoClient,
+  onClose: () => Promise<void>
+}
+
+export async function connect(options: ConnectionOptions): Promise<Result> {
   options = { ...defaultOptions, ...options }
 
   const forceClose = !!options.forceClose
@@ -28,9 +35,8 @@ export async function connect(options: ConnectionOptions): Promise<any> {
   }
 
   const mongooseClient = await mongoose.connect(url, options)
-  const mongodbClient = mongooseClient.connection.getClient()
+  const mongodbClient = mongooseClient.connection.getClient() as any
   const onClose = () => mongooseClient.connection.close(forceClose as boolean)
-  const db = mongooseClient.connection.db
-
+  const db = mongooseClient.connection.db as any
   return { db, client: mongooseClient, mongodbClient, onClose }
 }
