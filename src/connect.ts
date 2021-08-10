@@ -13,7 +13,7 @@ const defaultOptions = {
   useUnifiedTopology: true
 }
 
-export  async function connect(options: ConnectionOptions) {
+export async function connect(options: ConnectionOptions) {
   options = { ...defaultOptions, ...options }
 
   const forceClose = !!options.forceClose
