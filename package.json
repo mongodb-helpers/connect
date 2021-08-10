@@ -1,6 +1,6 @@
 {
   "name": "@mongodb-helpers/connect",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Don't repeat yourself when you want to connect to mongodb 🧚🏻‍♂️.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,7 +25,14 @@
     "type": "git",
     "url": "git+https://github.com/mongodb-helpers/connect.git"
   },
-  "keywords": [],
+  "keywords": [
+    "mongodb",
+    "mongoose",
+    "connect",
+    "connection",
+    "helpers",
+    "utils"
+  ],
   "license": "MIT",
   "author": {
     "name": "imed jaberi",
