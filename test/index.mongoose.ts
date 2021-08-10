@@ -1,29 +1,25 @@
 import { assert, expect } from 'chai'
-import { Db, MongoClient } from 'mongodb'
 
-import { connect, withMongoose } from '../src'
+import { connect } from '../src/mongoose'
 
 const MONGODB_URL = 'mongodb+srv://test:test@cluster0.6os9x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
-describe('connect mongodb driver', () => {
+describe('connect mongoose odm', () => {
   it('should export connect as function with 1 param', () => {
     assert.strictEqual(typeof connect, 'function')
     assert.strictEqual(connect.length, 1)
   })
 
-  it('should export withMongoose as function with 1 param', () => {
-    assert.strictEqual(typeof withMongoose, 'function')
-    assert.strictEqual(withMongoose.length, 1)
-  })
-
   it('should connect to mongodb when pass valid url', async () => {
     const socket = await connect({ url: MONGODB_URL })
     expect(socket).that.has.property('db')
-    assert(socket.db instanceof Db)
+    // assert(socket.db instanceof Db) --should-fix-mongoose-types
     expect(socket).that.has.property('client')
-    assert(socket.client instanceof MongoClient)
+    // assert(socket.client instanceof mongoose) --should-fix-mongoose-types
+    expect(socket).that.has.property('mongodbClient')
+    // assert(socket.mongodbClient instanceof MongoClient) --should-fix-mongoose-types
     expect(socket).that.has.property('onClose')
-    assert(typeof socket.onClose === 'function')
+    // assert(typeof socket.onClose === 'function') --should-fix-mongoose-types
     socket.onClose()
   })
 
@@ -39,22 +35,10 @@ describe('connect mongodb driver', () => {
     }
   })
 
-  it('should with-mongoose wrap correctly the connect', async () => {
-    const connection = await connect({ url: MONGODB_URL })
-    try {
-      withMongoose(connection.client)
-    } catch (error) {
-      // Throw here beacause we use mongodb driver v4 and mongoose use v3
-      assert.ok
-    }
-    // assert.strictEqual(mongoose.connection.readyState, 1)
-  })
-
   it('should close connection to mongodb when call onClose', async () => {
-    const socket = await connect({ url: MONGODB_URL })
-    // socket.db.stats()
-    assert.strictEqual((await socket.db.admin().ping()).ok, 1)
-    socket.onClose()
-    expect(async () => { await socket.db.admin().ping() }).to.Throw
+    const { client, onClose } = await connect({ url: MONGODB_URL })    
+    assert.strictEqual(client.connection.readyState, 1)
+    onClose()
+    assert.notStrictEqual(client.connection.readyState, 1)
   })
 })
