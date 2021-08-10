@@ -1,6 +1,6 @@
 {
   "name": "@mongodb-helpers/connect",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Don't repeat yourself when you want to connect to mongodb 🧚🏻‍♂️.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
