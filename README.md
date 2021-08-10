@@ -40,6 +40,8 @@ When use mongoose should you also add `mongoose`
 
 This is a practical example of how to use.
 
+with MongoDB driver:
+
 ```typescript
 import { connect, withMongoose } from "@mongodb-helpers/connect";
 
@@ -50,6 +52,18 @@ const connection = await connect({ url: process.env.MONGODB_URL });
 
 // withMongoose take mongodb client instance as param
 withMongoose(connection.client);
+```
+
+with Mongoose ODM:
+
+```typescript
+import { connect } from "@mongodb-helpers/connect/mongoose";
+
+const connection = await connect({ url: process.env.MONGODB_URL });
+// connection.db : database instance
+// connection.client: mongoose client instance
+// connection.mongodbClient: mongodb client instance
+// connection.onClose: helper function to close connection
 ```
 
 #### License
